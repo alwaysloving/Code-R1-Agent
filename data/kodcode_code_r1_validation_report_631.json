@@ -1,0 +1,780 @@
+{
+  "prompt_splits": {
+    "sft_prompts": {
+      "rows": 3000,
+      "difficulty": {
+        "easy": 2700,
+        "medium": 270,
+        "hard": 30
+      },
+      "counters": {
+        "prompt_too_long": 1
+      },
+      "prompt_chars": {
+        "min": 530,
+        "p50": 1122,
+        "p90": 2278,
+        "max": 8245
+      },
+      "solution_chars": {
+        "min": 77,
+        "p50": 440,
+        "p90": 773,
+        "max": 2025
+      },
+      "solution_checked": 30,
+      "failure_examples": []
+    },
+    "grpo": {
+      "rows": 2400,
+      "difficulty": {
+        "medium": 720,
+        "easy": 1440,
+        "hard": 240
+      },
+      "counters": {},
+      "prompt_chars": {
+        "min": 564,
+        "p50": 1199,
+        "p90": 2344,
+        "max": 4664
+      },
+      "solution_chars": {
+        "min": 79,
+        "p50": 479,
+        "p90": 802,
+        "max": 1556
+      },
+      "solution_checked": 30,
+      "failure_examples": []
+    },
+    "eval": {
+      "rows": 500,
+      "difficulty": {
+        "easy": 300,
+        "hard": 50,
+        "medium": 150
+      },
+      "counters": {},
+      "prompt_chars": {
+        "min": 570,
+        "p50": 1234,
+        "p90": 2264,
+        "max": 3653
+      },
+      "solution_chars": {
+        "min": 99,
+        "p50": 484,
+        "p90": 853,
+        "max": 2027
+      },
+      "solution_checked": 30,
+      "failure_examples": []
+    }
+  },
+  "sft": {
+    "rows": 3000,
+    "shapes": {
+      "(0, 1, 0)": 1800,
+      "(1, 1, 1)": 1200
+    },
+    "counters": {},
+    "examples": []
+  },
+  "overlap": {
+    "sft_prompts__grpo": 0,
+    "sft_prompts__eval": 0,
+    "grpo__eval": 0
+  },
+  "easy_audit": {
+    "sample_size": 50,
+    "flagged": 14,
+    "flag_counts": {
+      "keyword_complexity": 7,
+      "few_hidden_tests": 4,
+      "long_prompt": 5
+    },
+    "items": [
+      {
+        "split": "sft_prompts",
+        "row": 485,
+        "id": "Algorithm_2880_I",
+        "fn_name": "recursive_binary_search",
+        "subset": "Algorithm",
+        "prompt_chars": 2439,
+        "solution_chars": 501,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\n### Implementing a Recursive Binary Search\n\nYou are tasked with implementing a recursive binary search function in Python. This function should take a sorted list and a target value, returning the index of the target value within the list, or `-1` if the target does not exist in the list.\n\n#### Function Signature\n```python\ndef recursive_binary_search(sorted_list: list, target: int, left: int = 0, right: int = None) -> int:\n```\n\n#### Parameters:\n- `sorted_list` (list): A list of integers sorted in ascending order.\n- `target` (int): The integer value to search for within the list.\n- `left` (int, optional): The left boundary of the search interval. Defaults to 0.\n- `right` (int, optional): The right boundary of the search interval. Defaults to `None`, which should be interpreted as `len(sorted_list) - 1`.\n\n#### Returns:\n- `int`: The index of the target within the list if found, otherwise `-1`.\n\n### Requirements:\n1. If `right` is `None` at the initial call, set it to the length of the list minus one.\n2. Perform a recursive binary search using the middle element of the interval.\n3. Ensure the function returns the correct index of the target if found.\n4. Handle the case where the target is not found by returning `-1`.\n\n### Constraints:\n- Input list length: \\( 1 \\le \\text{len(sorted_list)} \\le 10^5 \\)\n- Values in the sorted list and target: \\( -10^9 \\le \\text{target}, \\text{value in sorted_list} \\le 10^9 \\)\n\n### Example Usage:\n```python\nsorted_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\nprint(recursive_binary_search(sorted_list, 5))    # 4\nprint(recursive_binary_search(sorted_list, 1))    # 0\nprint(recursive_binary_search(sorted_list, 10))   # 9\nprint(recursive_binary_search(sorted_list, -5))   # -1\nprint(recursive_binary_search(sorted_list, 11))   # -1\n```\n\nImplement the `recursive_binary_search` function and ensure it passes the provided test cases.\n\nImplement callable `recursive_binary_search`.\nFunction declaration: `def recursive_binary_search(sorted_list, target, left=0, right=None):`"
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2436,
+        "id": "Taco_73793_I",
+        "fn_name": "fizz_buzz_transform",
+        "subset": "Taco",
+        "prompt_chars": 2066,
+        "solution_chars": 858,
+        "public_tests": 2,
+        "hidden_tests": 8,
+        "flags": [],
+        "question": "Problem:\nImplement a function that takes a list of positive integers and returns a list where each integer transformation is done according to the following rules:\n\n1. If the integer is divisible by 3, replace it with the string \"Fizz\".\n2. If the integer is divisible by 5, replace it with the string \"Buzz\".\n3. If the integer is divisible by both 3 and 5, replace it with the string \"FizzBuzz\".\n4. Otherwise, the integer remains unchanged.\n\nThe function signature is defined as:\n\n```python\ndef fizz_buzz_transform(numbers: List[int]) -> List[Union[int, str]]:\n    pass\n```\n\n**Example:**\n```python\ninput_list = [1, 3, 5, 15, 22, 30]\nfizz_buzz_transform(input_list)\n```\n\n**Output:**\n```\n[1, 'Fizz', 'Buzz', 'FizzBuzz', 22, 'FizzBuzz']\n```\n\n**Explanation:**\n\n- 1 is not divisible by 3 or 5, so it remains unchanged.\n- 3 is divisible by 3, so it is replaced by \"Fizz\".\n- 5 is divisible by 5, so it is replaced by \"Buzz\".\n- 15 is divisible by both 3 and 5, so it is replaced by \"FizzBuzz\".\n- 22 is not divisible by 3 or 5, so it remains unchanged.\n- 30 is divisible by both 3 and 5, so it is replaced by \"FizzBuzz\".\n\nImplement callable `fizz_buzz_transform`.\nFunction declaration: `def fizz_buzz_transform(numbers):`\n\nDocstring:\nTransforms a list of positive integers according to the FizzBuzz rules.\n\nArgs:\n- numbers: List[int] : A list of positive integers.\n\nReturns:\n- List[Union[int, str]] : A list where each integer is replaced by:\n  - 'Fizz' if divisible by 3\n  - 'Buzz' if divisible by 5\n  - 'FizzBuzz' if divisible by both 3 and 5\n  - The integer itself if none of the above conditions are met"
+      },
+      {
+        "split": "sft_prompts",
+        "row": 796,
+        "id": "Filter_54856_I",
+        "fn_name": "average",
+        "subset": "Filter",
+        "prompt_chars": 724,
+        "solution_chars": 202,
+        "public_tests": 2,
+        "hidden_tests": 6,
+        "flags": [],
+        "question": "Problem:\nCreate a function in Python that takes a list of integers and returns the average of the numbers in the list. The function should handle an empty list by returning 0.0.\n\nImplement callable `average`.\nFunction declaration: `def average(numbers):`\n\nDocstring:\nReturns the average of a list of numbers. \nIf the list is empty, returns 0.0."
+      },
+      {
+        "split": "grpo",
+        "row": 1042,
+        "id": "Algorithm_1690_I",
+        "fn_name": "is_perfect_square",
+        "subset": "Algorithm",
+        "prompt_chars": 1693,
+        "solution_chars": 477,
+        "public_tests": 2,
+        "hidden_tests": 13,
+        "flags": [],
+        "question": "Problem:\n### Problem Statement\nA perfect square is an integer that is the square of some integer. For example, 1, 4, 9, and 16 are perfect squares because:\n- 1 = 1 * 1\n- 4 = 2 * 2\n- 9 = 3 * 3\n- 16 = 4 * 4\n\nWrite a function `is_perfect_square` that takes an integer `x` as input and returns `True` if the number is a perfect square, otherwise returns `False`. The function should handle edge cases, such as when `x` is zero or negative gracefully.\n\n#### Input Format\n- An integer `x` which needs to be checked if it is a perfect square.\n\n#### Output Format\n- A boolean value: `True` if `x` is a perfect square, otherwise `False`.\n\n#### Constraints\n- The function should be efficient and handle up to large values of `x` within practical limits.\n- You are not allowed to use the `sqrt` function from Python's math module.\n\n#### Example\n```python\nassert is_perfect_square(16) == True\nassert is_perfect_square(14) == False\nassert is_perfect_square(1) == True\nassert is_perfect_square(0) == True\nassert is_perfect_square(-4) == False\nassert is_perfect_square(25) == True\nassert is_perfect_square(26) == False\n```\n\nImplement callable `is_perfect_square`.\nFunction declaration: `def is_perfect_square(x):`\n\nDocstring:\nReturns True if x is a perfect square, otherwise False.\nHandles edge cases for zero and negative numbers."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2427,
+        "id": "Filter_83677_I",
+        "fn_name": "reverse_string",
+        "subset": "Filter",
+        "prompt_chars": 765,
+        "solution_chars": 164,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nThis code defines a function to reverse a string:\n\n```python\ndef reverse_string(s):\n\"\"\"Reverses a string.\n\nArgs:\n  s: The string to reverse.\n\nReturns:\n  The reversed string.\n\"\"\"\n  return s[::-1]\n\nImplement callable `reverse_string`.\nFunction declaration: `def reverse_string(s):`\n\nDocstring:\nReverses a string.\n\nArgs:\n  s: The string to reverse.\n\nReturns:\n  The reversed string."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 976,
+        "id": "Apps_10100_I",
+        "fn_name": "rotate_list",
+        "subset": "Apps",
+        "prompt_chars": 1297,
+        "solution_chars": 458,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [],
+        "question": "Problem:\nYou have a list of integers and an integer `k`. Your task is to rotate the list to the right by `k` steps, where `k` is non-negative. The rotation means that the final elements of the array become the first elements of the array. \n\nWrite a function to perform this operation and return the new list.\n\n## Function Signature\n```python\ndef rotate_list(nums: List[int], k: int) -> List[int]:\n    # Your code here\n```\n\n## Example\n```\nrotate_list([1, 2, 3, 4, 5], 2)  -->  [4, 5, 1, 2, 3]\nrotate_list([0, 1, 2], 4)  -->  [2, 0, 1]\nrotate_list([-1, -100, 3, 99], 2)  -->  [3, 99, -1, -100]\n```\n\nImplement callable `rotate_list`.\nFunction declaration: `def rotate_list(nums, k):`\n\nDocstring:\nRotates the list to the right by k steps.\n\nParameters:\n  nums (List[int]): List of integers to be rotated.\n  k (int): Number of steps to rotate the list.\n  \nReturns:\n  List[int]: The rotated list."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 354,
+        "id": "Data_Structure_15500_I",
+        "fn_name": "enhanced_rabin_karp",
+        "subset": "Data_Structure",
+        "prompt_chars": 2252,
+        "solution_chars": 1556,
+        "public_tests": 2,
+        "hidden_tests": 10,
+        "flags": [],
+        "question": "Problem:\n### Rabin-Karp Algorithm Enhancement\n\n**Context**:\nYou are tasked with improving a plagiarism detection system that relies on the Rabin-Karp algorithm for string matching. The current implementation is encountering an unexpected number of hash collisions, leading to inefficient performance. Your goal is to re-implement the algorithm to reduce hash collisions and optimize performance.\n\n#### Problem Statement\nWrite a modified version of the Rabin-Karp algorithm that:\n1. Utilizes a large prime number as the modulus operator in the hash calculations.\n2. Ensures efficient handling of edge cases such as empty strings or non-matching words.\n3. Minimizes hash collisions by adjusting the base of the hash function.\n\n#### Input and Output\n- **Input**: Two strings, `word` (the string to search for) and `text` (the string to search within).\n- **Output**: The starting index of the first occurrence of `word` in `text`, or `None` if the `word` is not found.\n\n#### Constraints\n- Assume all strings consist of lowercase English letters.\n- Length of both `word` and `text` \\( \\leq 10^5 \\).\n\n#### Example\n```python\ndef enhanced_rabin_karp(word: str, text: str) -> int:\n    # Your code here\n\n# Example input\nprint(enhanced_rabin_karp(\"abc\", \"abxabcabcaby\"))  # Output should be 3\nprint(enhanced_rabin_karp(\"abc\", \"defghijklmnopqrst\"))  # Output should be None\n```\n\n#### Requirements\n1. Implement the Rabin-Karp algorithm using a large prime number (e.g., 101).\n2. Ensure you handle all edge cases correctly.\n3. The solution must be efficient and minimize hash collisions.\n\nImplement callable `enhanced_rabin_karp`.\nFunction declaration: `def enhanced_rabin_karp(word, text):`\n\nDocstring:\nImplements the Rabin-Karp algorithm to find the first occurrence of `word` in `text`.\nUses a large prime number to minimize hash collisions."
+      },
+      {
+        "split": "grpo",
+        "row": 656,
+        "id": "Filter_17958_I",
+        "fn_name": "find_first_duplicate",
+        "subset": "Filter",
+        "prompt_chars": 1115,
+        "solution_chars": 136,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nI have one-dimensional array of integers. I need to find the first duplicate in the array. \nThe array is not empty, contains only positive integers and can contain duplicates.\nArray length can be up to 10^6 elements.  \nExample: for arr = [2,1,3,5,3,2] first duplicate is 3.\n\nMy current solution is:\n\n```python\ndef find_first_duplicate(arr):\n    seen = set()\n    for num in arr:\n        if num in seen:\n            return num\n        seen.add(num)\n    return None  # this will never happen according to the problem description\n```\n\nWhat are the problems with the solution and how can it improve it?\n\nImplement callable `find_first_duplicate`.\nFunction declaration: `def find_first_duplicate(arr):`"
+      },
+      {
+        "split": "eval",
+        "row": 421,
+        "id": "Apps_3549_I",
+        "fn_name": "fibonacci",
+        "subset": "Apps",
+        "prompt_chars": 1097,
+        "solution_chars": 489,
+        "public_tests": 2,
+        "hidden_tests": 2,
+        "flags": [
+          "few_hidden_tests"
+        ],
+        "question": "Problem:\nWrite a function that accepts an integer `n` as input and returns a list containing the fibonacci sequence up to the `n`th term.\n\n# Requirements\n- Your function should handle values of `n` >= 1.\n- The fibonacci sequence is defined as:\n  - The first two numbers are 0 and 1.\n  - Each subsequent number is the sum of the previous two.\n  \n# Notes\n- Implement an efficient solution that avoids unnecessary computations.\n\nImplement callable `fibonacci`.\nFunction declaration: `def fibonacci(n):`\n\nDocstring:\nReturns a list containing the Fibonacci sequence up to the nth term.\n\nParameters:\nn (int): the number of terms in the Fibonacci sequence to generate\n\nReturns:\nlist: a list containing the Fibonacci sequence up to the nth term"
+      },
+      {
+        "split": "grpo",
+        "row": 35,
+        "id": "Leetcode_12451_I",
+        "fn_name": "max_diff_increasing_subsequence",
+        "subset": "Leetcode",
+        "prompt_chars": 1211,
+        "solution_chars": 449,
+        "public_tests": 2,
+        "hidden_tests": 8,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\nGiven an integer array `nums`, return the maximum difference between any increasing subsequence of length 2. If no such subsequence exists, return `0`. For example, given `nums = [4, 5, 1, 3, 2, 10]`, the output should be `9` because the maximum difference is between the numbers `1` and `10`. If given `nums = [5, 4, 3, 2]`, the output should be `0` as there is no increasing subsequence of length 2. \n\n**Note:** An increasing subsequence of length 2 is a pair `(nums[i], nums[j])` where `i < j` and `nums[i] < nums[j]`.\n\nImplement callable `max_diff_increasing_subsequence`.\nFunction declaration: `def max_diff_increasing_subsequence(nums):`\n\nDocstring:\nReturns the maximum difference between any increasing subsequence of length 2.\nIf no such subsequence exists, return 0."
+      },
+      {
+        "split": "grpo",
+        "row": 172,
+        "id": "Prefill_10344_I",
+        "fn_name": "factorial",
+        "subset": "Prefill",
+        "prompt_chars": 689,
+        "solution_chars": 240,
+        "public_tests": 2,
+        "hidden_tests": 2,
+        "flags": [
+          "few_hidden_tests"
+        ],
+        "question": "Problem:\nWrite a function to calculate the factorial of a given number. The function should be efficient and handle large numbers. Use Python's `math` library to achieve this.\n\nImplement callable `factorial`.\nFunction declaration: `def factorial(n):`\n\nDocstring:\nReturns the factorial of the given number n using Python's math library."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 480,
+        "id": "Filter_16343_I",
+        "fn_name": "group_indices",
+        "subset": "Filter",
+        "prompt_chars": 1616,
+        "solution_chars": 549,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nI have a vector of integers and I wish to create a variable, let's call it \"groups\", which would contain a number of vectors, each of which contains the indices of the original vector which have a certain property. \n\nFor example, given the vector [1, 2, 2, 4, 4, 4] of integers, I wish the variable \"groups\" to be [[0], [1, 2], [3, 4, 5]] if the property is that the integer values are the same. \n\nHere is my attempt so far:\n\n```python\ndef group_indices(vector):\n    seen = []\n    groups = []\n    for i, x in enumerate(vector):\n        if x not in seen:\n            groups.append([i])\n            seen.append(x)\n        else:\n            for j, group in enumerate(groups):\n                if x in [vector[k] for k in group]:\n                    groups[j].append(i)\n                    break\n    return groups\n```\n\nIs this approach correct and time-efficient?\n\nImplement callable `group_indices`.\nFunction declaration: `def group_indices(vector):`\n\nDocstring:\nGroups indices of the elements in the vector based on their value.\n\nParameters:\nvector (list of int): List of integers.\n\nReturns:\nlist of list of int: List where each sublist contains the indices of the elements with the same value."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1464,
+        "id": "Taco_97040_I",
+        "fn_name": "allowed_riders",
+        "subset": "Taco",
+        "prompt_chars": 1956,
+        "solution_chars": 548,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\n# Roller Coaster Queue Management\n\nA popular amusement park has implemented a new rule for managing the queue system for its top roller coaster ride. Each visitor's height (in cm) is recorded upon entry, and only those within a specified height range are allowed to board the ride.\n\nImplement the function `allowed_riders`, which takes:\n- An array of integers `heights` representing the heights of the visitors in the queue,\n- Two integers `min_height` and `max_height` representing the inclusive height range.\n\nThe function should return a list of the visitors' heights who are allowed to board the ride, maintaining their original order.\n\n## Example\n\n```python\nallowed_riders([160, 150, 170, 145, 180, 175], 150, 180)\n```\n\nExpected output:\n```\n[160, 150, 170, 180, 175]\n```\n\n## Notes:\n1. The function should include both `min_height` and `max_height` in the allowed height range.\n2. The order of heights in the input list should be preserved in the result.\n\n---\n*Good luck.*\n\nImplement callable `allowed_riders`.\nFunction declaration: `def allowed_riders(heights, min_height, max_height):`\n\nDocstring:\nReturns the list of heights of visitors who are allowed to board the ride.\n\nParameters:\nheights (list of int): A list of heights of visitors.\nmin_height (int): The minimum height allowed to board the ride.\nmax_height (int): The maximum height allowed to board the ride.\n\nReturns:\nlist of int: A list of heights of visitors who are within the allowed height range."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1233,
+        "id": "Taco_90401_I",
+        "fn_name": "product_of_all_except_self",
+        "subset": "Taco",
+        "prompt_chars": 1109,
+        "solution_chars": 698,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [],
+        "question": "Problem:\nWrite a function that takes a list of integers and returns a list of the same length where each element at index `i` is the product of all elements in the original list except the one at `i`.\n\nFor example:\n```python\nproduct_of_all_except_self([1, 2, 3, 4])    == [24, 12, 8, 6]\nproduct_of_all_except_self([5, 3, 2, 6, 4]) == [144, 240, 360, 120, 180]\n```\n\nImplement callable `product_of_all_except_self`.\nFunction declaration: `def product_of_all_except_self(nums):`\n\nDocstring:\nReturns a list where each element at index i is the product of all elements\nin the input list except the one at i.\n\n:param nums: List of integers\n:return: List of integers"
+      },
+      {
+        "split": "grpo",
+        "row": 115,
+        "id": "Taco_19353_I",
+        "fn_name": "formatWithCommas",
+        "subset": "Taco",
+        "prompt_chars": 1388,
+        "solution_chars": 564,
+        "public_tests": 2,
+        "hidden_tests": 13,
+        "flags": [],
+        "question": "Problem:\nGiven a string representing a large integer, the task is to format it with commas to separate every three digits from the right.\n\nWrite a function `formatWithCommas(s: str) -> str` that takes a string `s` representing a non-negative integer and returns the formatted string with commas.\n\n**Examples:**\n\n- Input: `\"123\"`\n  Output: `\"123\"`\n  \n- Input: `\"1234\"`\n  Output: `\"1,234\"`\n  \n- Input: `\"123456789\"`\n  Output: `\"123,456,789\"`\n  \n- Input: `\"0\"`\n  Output: `\"0\"`\n\n**Notes:**\n\n1. The length of the input string `s` will be between 1 and 20.\n2. The input string will not contain any leading zeros except when the input is `\"0\"`.\n3. The function should handle large integers seamlessly by treating them as strings.\n\nImplement callable `formatWithCommas`.\nFunction declaration: `def formatWithCommas(s):`\n\nDocstring:\nFormats a string representing a non-negative integer with commas.\n\nArgs:\ns (str): The input string representing a non-negative integer.\n\nReturns:\nstr: The formatted string with commas."
+      },
+      {
+        "split": "grpo",
+        "row": 60,
+        "id": "Taco_41359_I",
+        "fn_name": "reverse_words",
+        "subset": "Taco",
+        "prompt_chars": 1518,
+        "solution_chars": 405,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nWrite a function that takes an English sentence as input and returns the sentence with each word's letters reversed but with the words in their original order.\n\nThe input will consist of a single string containing alphabetic characters and spaces. The sentence will neither start nor end with a space, and there will be exactly one space between any two words. The sentences will have at most 100 characters.\n\nSAMPLE INPUT:\nHello World\nProgramming is fun\nCode every day\n\nSAMPLE OUTPUT:\nolleH dlroW\ngnimmargorP si nuf\nedoC yreve yad\n\nExplanation\n\nEXAMPLE 1: \nThe word 'Hello' becomes 'olleH' and 'World' becomes 'dlroW'. The words remain in the same order.\n\nEXAMPLE 2:\nThe word 'Programming' becomes 'gnimmargorP', 'is' becomes 'si', and 'fun' becomes 'nuf'. The words remain in the same order.\n\nImplement callable `reverse_words`.\nFunction declaration: `def reverse_words(sentence):`\n\nDocstring:\nReverses each word in the sentence but keeps the words in their original order.\n\nParameters:\nsentence (str): The input English sentence to be processed.\n\nReturns:\nstr: The sentence with each word's letters reversed."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2243,
+        "id": "Filter_49586_I",
+        "fn_name": "convert_temperature",
+        "subset": "Filter",
+        "prompt_chars": 1272,
+        "solution_chars": 673,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nI need to write a Python function that can convert a given temperature from Celsius to Fahrenheit and vice versa. The function should take two parameters: the temperature value and a string indicating the conversion type (\"CtoF\" for Celsius to Fahrenheit and \"FtoC\" for Fahrenheit to Celsius). The function should return the converted temperature value, rounded to two decimal places. How can I write this function?\n\nImplement callable `convert_temperature`.\nFunction declaration: `def convert_temperature(value, conversion_type):`\n\nDocstring:\nConverts temperature from Celsius to Fahrenheit and vice versa.\n\nParameters:\nvalue (float): The temperature value to be converted.\nconversion_type (str): The conversion type (\"CtoF\" for Celsius to Fahrenheit or \"FtoC\" for Fahrenheit to Celsius).\n\nReturns:\nfloat: The converted temperature, rounded to two decimal places."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1502,
+        "id": "Algorithm_22453_I",
+        "fn_name": "longest_common_prefix",
+        "subset": "Algorithm",
+        "prompt_chars": 2704,
+        "solution_chars": 801,
+        "public_tests": 2,
+        "hidden_tests": 9,
+        "flags": [
+          "long_prompt"
+        ],
+        "question": "Problem:\n### Context\nYou are developing an algorithm for a recommendation system to find the most common prefixes shared among a list of strings, which will help in auto-completion features. The algorithm should find the longest common prefix (LCP) among a list of strings provided.\n\n### Objective\nImplement a function to find the longest common prefix string amongst a list of strings. If there is no common prefix, return an empty string.\n\n### Function Signature\n```python\ndef longest_common_prefix(strings: list[str]) -> str:\n\"\"\"\nFind the longest common prefix string amongst an array of strings\n\n:param strings: List of strings to evaluate\n:return: Longest common prefix string shared among all input strings, or empty string if none exists\n\nExample:\n>>> longest_common_prefix([\"flower\",\"flow\",\"flight\"])\n\"fl\"\n\n>>> longest_common_prefix([\"dog\",\"racecar\",\"car\"])\n\"\"\n\"\"\"\n```\n\n### Constraints and Requirements\n1. The input parameter `strings` should be a list of strings.\n2. If the input list is empty, return an empty string.\n3. The function should handle cases where there is no common prefix.\n4. The function should consider the case sensitivity of the strings.\n\n### Performance\n1. The algorithm should be efficient, ideally handling lists of up to 1000 strings with string lengths up to 1000 characters.\n2. Aim for a linear time complexity relative to the total number of characters across all strings.\n\n### Examples\n- Input: `[\"flower\", \"flow\", \"flight\"]`  \n  Output: `\"fl\"`\n  \n- Input: `[\"dog\", \"racecar\", \"car\"]`  \n  Output: `\"\"`\n  \n- Input: `[]`  \n  Output: `\"\"`\n\n- Input: `[\"interspecies\", \"interstellar\", \"interstate\"]`  \n  Output: `\"inters\"`\n\n### Notes\nEnsure the function correctly identifies the longest common prefix, and consider edge cases such as an empty input list or strings with no common characters. Verification of the implementation should include various test cases with different PREFIX lengths and complexities.\n\nImplement callable `longest_common_prefix`.\nFunction declaration: `def longest_common_prefix(strings):`\n\nDocstring:\nFind the longest common prefix string amongst an array of strings.\n\n:param strings: List of strings to evaluate.\n:return: Longest common prefix string shared among all input strings, or empty string if none exists."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 14,
+        "id": "Filter_2892_I",
+        "fn_name": "find_min_length_word",
+        "subset": "Filter",
+        "prompt_chars": 2753,
+        "solution_chars": 369,
+        "public_tests": 2,
+        "hidden_tests": 8,
+        "flags": [
+          "long_prompt"
+        ],
+        "question": "Problem:\nYou are given a string `s` and a list of strings `words`. Find the length of the shortest word that is not in the dictionary or is a substring of one of the words in the list.\n\nExample 1:\n\n Input: `s = \"barfoothefoobarman\", words = [\"foo\",\"bar\"]`\n Output: `0` (because \"foo\" and \"bar\" are substrings of `s`, and the shortest word in the list is \"bar\" with length 3)\n\nExample 2:\n\n Input: `s = \"barfoothefoobarman\", words = [\"foo\",\"the\",\"bar\"]`\n Output: `0` (because \"foo\", \"the\", and \"bar\" are substrings of `s`, and the shortest word in the list is \"the\" with length 3)\n\n\nHowever, in this problem, we will return the minimum length of the word that is not in the dictionary or is a substring of one of the words in the list.\n\nExample 3:\n\n Input: `s = \"barfoothefoobarman\", words = [\"barfoo\",\"foo\",\"thebar\"]`\n Output: `3` (because the shortest word in the list that is a substring of `s` is \"barfoo\" with length 6 and \"foo\" with length 3, so we return 3)\n\n\nHere is the code:\n```python\ndef find_length(s, words):\n    res = float('inf')\n    for word in words:\n        if word in s:\n            res = min(res, len(word))\n    return res if res != float('inf') else 0\n```\nHowever, I want to improve it. I want to make it more efficient. You can see that in the code, for every word in the words list, we are checking if it's a substring of `s`. This operation is very expensive because it takes O(nm) time complexity where n is the length of the string `s` and m is the length of the word. We can improve it by using the sliding window technique.\n\nHere is the improved code:\n```python\ndef find_length(s, words):\n    unique_words = set(words)\n    min_len = float('inf')\n    for word in unique_words:\n        if len(word) < min_len:\n            min_len = len(word)\n    for window_size in range(min_len, len(s) + 1):\n        for i in range(len(s) - window_size + 1):\n            substring = s[i:i + window_size]\n            if substring in unique_words:\n                return window_size\n    return 0\n```\nHowever, I want to ask, how can I further improve this code?\n\nImplement callable `find_min_length_word`.\nFunction declaration: `def find_min_length_word(s, words):`\n\nDocstring:\nFind the length of the shortest word that is not in the dictionary or is a substring of one of the words in the list."
+      },
+      {
+        "split": "grpo",
+        "row": 1442,
+        "id": "Filter_84093_I",
+        "fn_name": "fibonacci_sequence",
+        "subset": "Filter",
+        "prompt_chars": 1230,
+        "solution_chars": 546,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nThe following is the definition of a **Fibonacci sequence**:\n\n\"A sequence of numbers where each subsequent number is the sum of the two preceding ones.\"\n\n**Examples:**\n* 1, 1, 2, 3, 5, 8, 13, 21, 34...\n\nWrite a program in Python to generate the Fibonacci sequence up to a given number of terms.\n\n\n```python\ndef fibonacci_sequence(n):\n  \"\"\"\n  This function generates the Fibonacci sequence up to a given number of terms.\n\n  Args:\n    n: The number of terms to generate.\n\n  Returns:\n    A list containing the Fibonacci sequence up to n terms.\n  \"\"\"\n\nImplement callable `fibonacci_sequence`.\nFunction declaration: `def fibonacci_sequence(n):`\n\nDocstring:\nThis function generates the Fibonacci sequence up to a given number of terms.\n\nArgs:\n    n: The number of terms to generate.\n\nReturns:\n    A list containing the Fibonacci sequence up to n terms."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 800,
+        "id": "Filter_24967_I",
+        "fn_name": "get_index",
+        "subset": "Filter",
+        "prompt_chars": 831,
+        "solution_chars": 268,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nYou've been tasked with writing a function `get_index` that takes two parameters: `my_list` and `my_element`. Your function should return the index of the first occurrence of `my_element` in the list `my_list`.\n\nImplement callable `get_index`.\nFunction declaration: `def get_index(my_list, my_element):`\n\nDocstring:\nReturns the index of the first occurrence of my_element in the list my_list.\nIf the element is not found, returns -1."
+      },
+      {
+        "split": "grpo",
+        "row": 640,
+        "id": "Apps_18029_I",
+        "fn_name": "merge_intervals",
+        "subset": "Apps",
+        "prompt_chars": 2082,
+        "solution_chars": 712,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [],
+        "question": "Problem:\n**[Problem Statement]**\n\n# Merge Intervals\n\n## Task\nGiven a collection of intervals, merge all overlapping intervals.\n\n## Description\nYou are given an array of intervals, where each interval is represented as a list with its start and end times `[start, end]`. Your task is to write a function that merges all overlapping intervals and returns an array of the merged intervals.\n\n## Input/Output\n* **Input:** A list of intervals where each interval is represented as a list `[start, end]`. Both `start` and `end` are integers such that `start ≤ end`.\n\n* **Output:** A list of intervals merged such that no two intervals overlap and all intervals are returned in ascending order based on their start time.\n\n### Example\n```python\n# Example 1\ninput_intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]\noutput_intervals = [[1, 6], [8, 10], [15, 18]]\n# Explanation: Since intervals [1, 3] and [2, 6] overlap, we merge them to get [1, 6].\n\n# Example 2\ninput_intervals = [[1, 4], [4, 5]]\noutput_intervals = [[1, 5]]\n# Explanation: Intervals [1, 4] and [4, 5] are considered overlapping due to the end of one touching the start of the other, so we merge them into [1, 5].\n```\n\n## Function Signature\n```python\ndef merge_intervals(intervals: List[List[int]]) -> List[List[int]]:\n```\n\n## Constraints\n- The list of intervals could be empty, return an empty list in such case.\n- All integers in the intervals are non-negative.\n- Intervals are not necessarily sorted.\n- The intervals in the returned list should be sorted by their start time.\n\nImplement callable `merge_intervals`.\nFunction declaration: `def merge_intervals(intervals):`"
+      },
+      {
+        "split": "sft_prompts",
+        "row": 647,
+        "id": "Leetcode_17814_I",
+        "fn_name": "length_of_longest_substring",
+        "subset": "Leetcode",
+        "prompt_chars": 1110,
+        "solution_chars": 451,
+        "public_tests": 2,
+        "hidden_tests": 6,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\nGiven a string `s`, return _the length of the longest substring without repeating characters_. \n\nFor example:\n```python\n# Example 1\ns = \"abcabcbb\"\nOutput: 3\nExplanation: The answer is \"abc\", with the length of 3.\n\n# Example 2\ns = \"bbbbb\"\nOutput: 1\nExplanation: The answer is \"b\", with the length of 1.\n\n# Example 3\ns = \"pwwkew\"\nOutput: 3\nExplanation: The answer is \"wke\", with the length of 3. Notice that the answer must be a substring, \"pwke\" is a subsequence and not a substring.\n\nImplement callable `length_of_longest_substring`.\nFunction declaration: `def length_of_longest_substring(s):`\n\nDocstring:\nGiven a string s, return the length of the longest substring without repeating characters."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 56,
+        "id": "Taco_22218_I",
+        "fn_name": "sum_of_squares",
+        "subset": "Taco",
+        "prompt_chars": 1111,
+        "solution_chars": 235,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nWrite a function `sum_of_squares(n)` that takes an integer `n` as input and returns the sum of the squares of all integers from 1 to `n`. For example, if `n = 3`, the function should return `1^2 + 2^2 + 3^2 = 14`. If `n = 0` or `n` is negative, the function should return 0.\n\n### Example:\n```python\nsum_of_squares(3) => 14\nsum_of_squares(5) => 55\nsum_of_squares(0) => 0\nsum_of_squares(-4) => 0\n```\n\n**Constraints**:\n- The input `n` will be an integer.\n- The function should handle edge cases where `n` is 0 or negative gracefully.\n\nImplement callable `sum_of_squares`.\nFunction declaration: `def sum_of_squares(n):`\n\nDocstring:\nReturns the sum of the squares of all integers from 1 to `n`.\nIf n is 0 or negative, the function returns 0."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2872,
+        "id": "Taco_59985_I",
+        "fn_name": "canFormPalindrome",
+        "subset": "Taco",
+        "prompt_chars": 1089,
+        "solution_chars": 317,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\nWrite a function `canFormPalindrome(s)` that takes a string `s` as input and returns `true` if any permutation of `s` could form a palindrome, otherwise returns `false`. A string can form a palindrome if at most one character appears an odd number of times. For example, the string \"racecar\" can form the palindrome \"racecar\", so `canFormPalindrome(\"racecar\")` should return `true`, whereas the string \"hello\" cannot form any palindrome, so `canFormPalindrome(\"hello\")` should return `false`.\n\nImplement callable `canFormPalindrome`.\nFunction declaration: `def canFormPalindrome(s):`\n\nDocstring:\nReturns True if any permutation of the string s can form a palindrome, otherwise returns False."
+      },
+      {
+        "split": "grpo",
+        "row": 1609,
+        "id": "Leetcode_19765_I",
+        "fn_name": "min_distance",
+        "subset": "Leetcode",
+        "prompt_chars": 1258,
+        "solution_chars": 1473,
+        "public_tests": 2,
+        "hidden_tests": 8,
+        "flags": [],
+        "question": "Problem:\nYou are given two strings, `string1` and `string2`, which consist of lowercase letters. You need to transform `string1` into `string2` by performing a sequence of allowed operations. In each operation, you can do one of the following:\n- Insert a new character into `string1`.\n- Delete an existing character from `string1`.\n- Replace an existing character in `string1` with any other character.\n\nYou are required to return the minimum number of operations needed to transform `string1` into `string2`.\n\nImplement callable `min_distance`.\nFunction declaration: `def min_distance(string1, string2):`\n\nDocstring:\nReturns the minimum number of operations needed to transform string1 into string2.\nTransformation operations include insertions, deletions, and substitutions.\n\n:param string1: Source string\n:param string2: Target string\n:return: Minimum number of operations"
+      },
+      {
+        "split": "sft_prompts",
+        "row": 925,
+        "id": "Algorithm_41389_I",
+        "fn_name": "merge_and_sort_lists",
+        "subset": "Algorithm",
+        "prompt_chars": 2045,
+        "solution_chars": 464,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\n### List Merging and Sorting Function\n\nWrite a function in Python called `merge_and_sort_lists` that accepts two parameters:\n1. `list1` (List[int]): A list of integers.\n2. `list2` (List[int]): Another list of integers.\n\nThe function should merge the two lists, sort the resulting list in ascending order, and remove any duplicate values. Finally, it should return the sorted list of unique values.\n\n### Constraints:\n* The input lists, `list1` and `list2`, can have lengths in the range of 0 to 10<sup>5</sup>.\n* Each list can contain integers from -10<sup>9</sup> to 10<sup>9</sup>.\n* Your function should be optimized to handle large inputs efficiently.\n\n### Inputs:\n* `list1`: a list containing 0 to 100,000 integers.\n* `list2`: a list containing 0 to 100,000 integers.\n\n### Outputs:\n* A sorted list of unique integers.\n\n### Example:\n\n```python\nprint(merge_and_sort_lists([5, 3, 1], [6, 2, 3, 1]))\n```\n\nShould return:\n\n```python\n[1, 2, 3, 5, 6]\n```\n\n### Hints:\n* Consider using Python's set data structure to remove duplicates efficiently.\n* Utilize the `sorted()` function to sort the list.\n\n### Additional Example:\n\n```python\nprint(merge_and_sort_lists([], [4, 2, 2, 3, 9]))\n```\n\nShould return:\n\n```python\n[2, 3, 4, 9]\n```\n\nImplement callable `merge_and_sort_lists`.\nFunction declaration: `def merge_and_sort_lists(list1, list2):`\n\nDocstring:\nMerges two lists, sorts the resulting list in ascending order,\nand removes duplicates.\n\nParameters:\n    list1 (list of int): The first list of integers.\n    list2 (list of int): The second list of integers.\n    \nReturns:\n    list of int: A sorted list of unique integers."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 407,
+        "id": "Data_Structure_15101_I",
+        "fn_name": "bit_manipulation",
+        "subset": "Data_Structure",
+        "prompt_chars": 3131,
+        "solution_chars": 995,
+        "public_tests": 2,
+        "hidden_tests": 6,
+        "flags": [
+          "long_prompt"
+        ],
+        "question": "Problem:\n#### Context\nYou are working on a low-level embedded system project. The project involves manipulating specific bits within integers to set flags or achieve efficient state management. To perform these operations effectively, you need to write functions that handle bit manipulation reliably and efficiently.\n\n#### Task\nWrite a function `bit_manipulation(num: int, i: int, action: str, bit: int = None) -> int` that performs one of four different bit manipulation operations on a given integer `num`. The function should accept the following parameters:\n\n* `num`: The integer on which the bit operation will be performed.\n* `i`: The index of the bit to be manipulated.\n* `action`: The type of bit manipulation to be performed. This can be 'get', 'set', 'clear', or 'update'.\n* `bit`: The value to set the ith bit to, applicable only for the 'update' action.\n\n#### Specifications\n* For the 'get' action, return 1 if the ith bit is 1, and 0 if the ith bit is 0.\n* For the 'set' action, set the ith bit to 1.\n* For the 'clear' action, set the ith bit to 0.\n* For the 'update' action, update the ith bit to the given `bit` value (0 or 1).\n\n#### Input\n* `num`: An integer within the standard 32-bit signed integer range.\n* `i`: A non-negative integer indicating the bit index.\n* `action`: A string, one of 'get', 'set', 'clear', or 'update'.\n* `bit`: An integer, either 0 or 1, only when `action` is 'update'.\n\n#### Output\n* Return an integer result of the bitwise operation or the bit value in case of 'get' action.\n\n#### Constraints\n* `0 <= num < 2**31`\n* `0 <= i < 31`\n* `bit` is applicable only when `action` is 'update'.\n\n#### Example\n```python\nassert bit_manipulation(5, 0, 'get') == 1  # 5 in binary is 101 and 0th bit is 1\nassert bit_manipulation(5, 1, 'clear') == 5  # 5 in binary is 101, clearing 1st bit results in 101\nassert bit_manipulation(5, 1, 'set') == 7  # 5 in binary is 101, setting 1st bit results in 111 (7 in decimal)\nassert bit_manipulation(5, 1, 'update', 0) == 5  # 101, updating 1st bit to 0 results in 101\nassert bit_manipulation(5, 1, 'update', 1) == 7  # 101, updating 1st bit to 1 results in 111\n```\n\n#### Implementation\nImplement the function based on the provided bit manipulation functions for each operation.\n\nImplement callable `bit_manipulation`.\nFunction declaration: `def bit_manipulation(num, i, action, bit=None):`\n\nDocstring:\nPerform bit manipulation on the given integer `num`.\n\nParameters:\n- num: The integer to be manipulated.\n- i: The index of the bit to be manipulated.\n- action: The type of manipulation. One of 'get', 'set', 'clear', or 'update'.\n- bit: The value to set the bit to, applicable only for 'update'.\n\nReturns:\n- Result of the bit manipulation or the bit value for 'get' action."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 846,
+        "id": "Prefill_21304_I",
+        "fn_name": "longest_string",
+        "subset": "Prefill",
+        "prompt_chars": 909,
+        "solution_chars": 425,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nCreate a function that takes a variable number of string arguments and returns the longest string among them.\n\nImplement callable `longest_string`.\nFunction declaration: `def longest_string(*args):`\n\nDocstring:\nReturns the longest string from the given arguments.\n\nParameters:\n    *args (str): Variable number of string arguments.\n    \nReturns:\n    str: The longest string among the input strings. If there are multiple strings with the same maximum length,\n    returns the first one encountered."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1301,
+        "id": "Filter_79383_I",
+        "fn_name": "find_first_index",
+        "subset": "Filter",
+        "prompt_chars": 886,
+        "solution_chars": 467,
+        "public_tests": 2,
+        "hidden_tests": 8,
+        "flags": [],
+        "question": "Problem:\nHow can I find the first index of any of the characters in a string using Python?\n\nImplement callable `find_first_index`.\nFunction declaration: `def find_first_index(s, chars):`\n\nDocstring:\nReturns the first index of any character from chars in the string s.\nIf no character from chars is found in s, returns -1.\n\n:param s: str, the string to search through.\n:param chars: str, the characters to search for in the string s.\n:return: int, the first index of any character from chars in s."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1149,
+        "id": "Algorithm_45413_I",
+        "fn_name": "rotate_list",
+        "subset": "Algorithm",
+        "prompt_chars": 2038,
+        "solution_chars": 481,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [],
+        "question": "Problem:\n### Question\n**Problem Statement**:\n\nYou are given a list of integers and an integer `k`. Your task is to rotate the list to the right by `k` steps.\n\n#### Function Signature:\n```python\ndef rotate_list(nums: list[int], k: int) -> list[int]:\n    pass\n```\n\n#### Input:\n- `nums`: A list of integers. `List[int]`.\n- `k`: An integer representing the number of steps to rotate the list. `int`.\n\n#### Output:\n- Return the modified list after rotating it to the right by `k` steps.\n\n#### Constraints:\n- The length of the list does not exceed \\(10^5\\).\n- Rotations beyond the length of the list should wrap around. For example, rotating a list of length 5 by 6 steps is equivalent to rotating it by 1 step.\n\n#### Examples:\n- `rotate_list([1, 2, 3, 4, 5], 2)` should return `[4, 5, 1, 2, 3]`.\n- `rotate_list([1, 2, 3, 4, 5], 5)` should return `[1, 2, 3, 4, 5]`.\n- `rotate_list([1, 2, 3, 4, 5], 7)` should return `[4, 5, 1, 2, 3]`.\n- `rotate_list([], 3)` should return `[]`.\n- `rotate_list([1], 0)` should return `[1]`.\n\n#### Notes:\n- Consider edge cases such as when the list is empty or when `k` is larger than the length of the list.\n- Aim for an efficient solution that operates within O(n) time complexity.\n\n**Hint**:\n- Use list slicing to achieve the rotation efficiently.\n\nGood luck!\n\nImplement callable `rotate_list`.\nFunction declaration: `def rotate_list(nums, k):`\n\nDocstring:\nRotates the list to the right by k steps.\n\nArgs:\nnums (List[int]): the list of integers to be rotated.\nk (int): the number of steps to rotate the list.\n\nReturns:\nList[int]: the modified list after rotating it to the right by k steps."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 202,
+        "id": "Prefill_580_I",
+        "fn_name": "add_strings",
+        "subset": "Prefill",
+        "prompt_chars": 815,
+        "solution_chars": 308,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nWrite a function to add two numbers in Python, but the numbers are stored as strings. The function should return the result as a string.\n\nImplement callable `add_strings`.\nFunction declaration: `def add_strings(num1, num2):`\n\nDocstring:\nAdds two numbers that are represented as strings.\n\nParameters:\nnum1 (str): The first number as string\nnum2 (str): The second number as string\n\nReturns:\nstr: The result of the addition as string"
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2668,
+        "id": "Data_Structure_1710_I",
+        "fn_name": "pigeonhole_sort",
+        "subset": "Data_Structure",
+        "prompt_chars": 1885,
+        "solution_chars": 649,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\n### Pigeonhole Sort Implementation\n\nYou have been hired by a software development company that specializes in processing large volumes of integer data. One of the tasks at hand requires sorting lists of integers efficiently. However, the lists they deal with often have a relatively small range of key values compared to the number of elements.\n\nYour task is to implement the Pigeonhole Sort algorithm, which is suitable for this type of problem. Write a function `pigeonhole_sort` in Python that takes a list of integers and returns a sorted list.\n\n#### Function Signature\n```python\ndef pigeonhole_sort(arr: List[int]) -> List[int]:\n```\n\n#### Input\n* `arr` (List[int]): A list of integers that need to be sorted.\n  \n#### Output\n* Returns a sorted list of integers.\n\n#### Constraints\n* Each integer in the list can be in the range from -1000 to 1000.\n* The length of the list `n` is such that `1 <= n <= 10^5`.\n\n#### Example\n```python\nassert pigeonhole_sort([8, 3, 2, 3, 8, 7, 1]) == [1, 2, 3, 3, 7, 8, 8]\nassert pigeonhole_sort([-5, 0, -2, 3, 2, -8]) == [-8, -5, -2, 0, 2, 3]\n```\n\n#### Requirements\n- The function should handle edge cases gracefully, such as an empty list or a list with a single element.\n- Ensure that the solution is efficient in terms of both time and space complexity, taking into account the constraints provided.\n- Add appropriate error handling and optimization where necessary.\n\nGood luck!\n\nImplement callable `pigeonhole_sort`.\nFunction declaration: `def pigeonhole_sort(arr):`"
+      },
+      {
+        "split": "grpo",
+        "row": 1365,
+        "id": "Filter_66470_I",
+        "fn_name": "count_words",
+        "subset": "Filter",
+        "prompt_chars": 685,
+        "solution_chars": 192,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nCan you generate a Python code to count the number of words in a given string using Python?\n\nImplement callable `count_words`.\nFunction declaration: `def count_words(s):`\n\nDocstring:\nReturns the number of words in a given string. A word is considered to be any \nsequence of characters separated by spaces."
+      },
+      {
+        "split": "grpo",
+        "row": 2010,
+        "id": "Filter_39043_I",
+        "fn_name": "reverse_string",
+        "subset": "Filter",
+        "prompt_chars": 914,
+        "solution_chars": 516,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nGiven a string, reverse the order of its characters without using any built-in string manipulation functions or additional data structures. The solution should have a time complexity of O(n), where n is the length of the string. Additionally, you are not allowed to create any new variables or arrays.\n\nImplement callable `reverse_string`.\nFunction declaration: `def reverse_string(s):`\n\nDocstring:\nReverses the input string s in place.\n\nArgs:\n- s (str): The string to be reversed.\n\nReturns:\n- str: The reversed string."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2416,
+        "id": "Prefill_132_I",
+        "fn_name": "reverse_string",
+        "subset": "Prefill",
+        "prompt_chars": 684,
+        "solution_chars": 113,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nWrite a function to reverse a string in Python. The function should take a string `s` as input and return the reversed string.\n\nImplement callable `reverse_string`.\nFunction declaration: `def reverse_string(s):`\n\nDocstring:\nReturns the reversed version of the input string s."
+      },
+      {
+        "split": "grpo",
+        "row": 1913,
+        "id": "Prefill_25483_I",
+        "fn_name": "sum_of_odd_integers",
+        "subset": "Prefill",
+        "prompt_chars": 728,
+        "solution_chars": 175,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nCreate a function that takes in a list of integers and returns the sum of the list. However, skip over any integers that are even.\n\nImplement callable `sum_of_odd_integers`.\nFunction declaration: `def sum_of_odd_integers(int_list):`\n\nDocstring:\nReturns the sum of the list, skipping over any integers that are even."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 342,
+        "id": "Prefill_1215_I",
+        "fn_name": "find_largest_number",
+        "subset": "Prefill",
+        "prompt_chars": 824,
+        "solution_chars": 394,
+        "public_tests": 2,
+        "hidden_tests": 2,
+        "flags": [
+          "few_hidden_tests"
+        ],
+        "question": "Problem:\nWrite a function to find the largest number in an array of integers. The function should be able to handle arrays with both positive and negative numbers.\n\nImplement callable `find_largest_number`.\nFunction declaration: `def find_largest_number(arr):`\n\nDocstring:\nReturns the largest number in an array of integers.\n\nParameters:\narr (list): A list of integers.\n\nReturns:\nint: The largest number in the list."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2783,
+        "id": "Filter_51617_I",
+        "fn_name": "factorial",
+        "subset": "Filter",
+        "prompt_chars": 693,
+        "solution_chars": 247,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\nWrite a short paragraph explaining the concept of recursion in programming, and provide a simple example in Python.\n\nImplement callable `factorial`.\nFunction declaration: `def factorial(n):`\n\nDocstring:\nReturns the factorial of a non-negative integer n.\nFor example, factorial(5) returns 120, because 5! = 5 * 4 * 3 * 2 * 1 = 120."
+      },
+      {
+        "split": "grpo",
+        "row": 206,
+        "id": "Data_Structure_5404_I",
+        "fn_name": "binary_search_name",
+        "subset": "Data_Structure",
+        "prompt_chars": 2515,
+        "solution_chars": 613,
+        "public_tests": 2,
+        "hidden_tests": 7,
+        "flags": [
+          "keyword_complexity",
+          "long_prompt"
+        ],
+        "question": "Problem:\nBinary Search\n\n#### Scenario\nSuppose you are developing a search utility for a contacts application where users have a list of contacts sorted alphabetically by their names. You need to implement a search function that efficiently locates a contact by their name.\n\n#### Task\nWrite a function `binary_search_name` that searches for a target name in a sorted list of contact names using the binary search technique. If the target name exists in the list, the function should return its index. If the target name does not exist, the function should return -1.\n\n#### Function Signature\n```python\ndef binary_search_name(names: List[str], target: str) -> int:\n    pass\n```\n\n#### Input\n- `names` (List[str]): A list of strings representing contact names sorted in ascending order. The list contains no duplicate names.\n- `target` (str): A string representing the name to be searched.\n\n#### Output\n- `int`: Index of the target name if found, otherwise -1.\n\n#### Constraints\n- The length of the list `names` is between 0 and 10^6.\n- The length of each contact name is between 1 and 100 characters.\n\n#### Example\n```python\nassert binary_search_name([\"Alice\", \"Bob\", \"Charlie\", \"David\"], \"Charlie\") == 2\nassert binary_search_name([\"Alice\", \"Bob\", \"Charlie\", \"David\"], \"Eve\") == -1\nassert binary_search_name([], \"Alice\") == -1\n```\n\n#### Performance Requirements\nYour implementation should have a time complexity of O(log n) and space complexity of O(1).\n\n#### Hints\n- Consider edge cases like an empty list or the target name being the first/last element in the list.\n- Ensure you're not causing integer overflow when computing the middle index; use Python’s integer division appropriately.\n\nImplement callable `binary_search_name`.\nFunction declaration: `def binary_search_name(names, target):`\n\nDocstring:\nPerforms binary search on a sorted list of names to find the index of the target name.\n\nParameters:\nnames (List[str]): A list of sorted contact names.\ntarget (str): The name to be searched.\n\nReturns:\nint: Index of the target name if found, else -1."
+      },
+      {
+        "split": "eval",
+        "row": 225,
+        "id": "Docs: Python310_34710_I",
+        "fn_name": "prime_factors",
+        "subset": "Docs",
+        "prompt_chars": 2230,
+        "solution_chars": 524,
+        "public_tests": 2,
+        "hidden_tests": 16,
+        "flags": [],
+        "question": "Problem:\n#### Problem Statement\n\nWrite a Python function `prime_factors(n: int) -> list` that takes an integer `n` and returns a list of all prime factors of `n`, sorted in ascending order.\n\nA prime factor is a factor of a number that is a prime number. Your function should:\n- Use basic arithmetic operations (+, -, *, /, //, etc.).\n- Utilize lists to store and manipulate intermediate results.\n- Demonstrate understanding of loops and conditionals to implement the prime factorization algorithm.\n\n#### Input\n- `n` (1 <= n <= 10^4): An integer for which you need to find the prime factors.\n\n#### Output\n- Return a list of integers representing the prime factors of `n`, sorted in ascending order.\n\n#### Example\n```python\n>>> prime_factors(28)\n[2, 2, 7]\n\n>>> prime_factors(100)\n[2, 2, 5, 5]\n\n>>> prime_factors(37)\n[37]\n\n>>> prime_factors(1)\n[]\n```\n\n#### Constraints\n- The input `n` will be a positive integer up to 10,000.\n- The output list should sort the prime factors in ascending order.\n- You should handle edge cases such as `n` being a prime number itself or `n` being the minimum value 1.\n\n#### Notes\n- The function must not use any external libraries for finding prime numbers.\n- Carefully handle edge cases such as when `n` is 1.\n\n#### Solution Template\n\n```python\ndef prime_factors(n: int) -> list:\n    # Your code here\n    pass\n```\n\n#### Evaluation Criteria\n- Correctness: The function should correctly determine the prime factors for various test cases.\n- Efficiency: The function should run efficiently within the given constraints.\n- Code Quality: The code should be well-structured and clearly written, making use of appropriate comments when necessary.\n\nImplement callable `prime_factors`.\nFunction declaration: `def prime_factors(n):`\n\nDocstring:\nReturns a list of prime factors of the given integer n, sorted in ascending order."
+      },
+      {
+        "split": "grpo",
+        "row": 2097,
+        "id": "Filter_30321_I",
+        "fn_name": "transpose_matrix",
+        "subset": "Filter",
+        "prompt_chars": 830,
+        "solution_chars": 420,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [
+          "keyword_complexity"
+        ],
+        "question": "Problem:\nWrite a function that takes a matrix (a list of lists) and returns the transposed matrix.\n\nImplement callable `transpose_matrix`.\nFunction declaration: `def transpose_matrix(matrix):`\n\nDocstring:\nReturns the transpose of the given matrix.\n\nParameters:\nmatrix (List[List[int]]): A 2D list representing the matrix to be transposed.\n\nReturns:\nList[List[int]]: The transposed matrix."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 1898,
+        "id": "Filter_47599_I",
+        "fn_name": "convert_and_square_list",
+        "subset": "Filter",
+        "prompt_chars": 987,
+        "solution_chars": 398,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nHow can I create a Python function that converts a list of integers into a comma-separated string, with each integer squared? For example, if I provide the list `[1, 2, 3]`, the function should return `\"1,4,9\"`. How can I achieve this?\n\nImplement callable `convert_and_square_list`.\nFunction declaration: `def convert_and_square_list(int_list):`\n\nDocstring:\nConverts a list of integers into a comma-separated string with each integer squared.\n\nArgs:\nint_list (list of int): The list of integers to be squared and converted.\n\nReturns:\nstr: A comma-separated string with each integer squared."
+      },
+      {
+        "split": "eval",
+        "row": 296,
+        "id": "Filter_65137_I",
+        "fn_name": "find_min_max",
+        "subset": "Filter",
+        "prompt_chars": 900,
+        "solution_chars": 329,
+        "public_tests": 2,
+        "hidden_tests": 4,
+        "flags": [],
+        "question": "Problem:\nWrite a Python function `find_min_max` that takes a list of integers and returns a tuple containing the minimum and maximum values from the list. If the list is empty, the function should return `(None, None)`.\n\nImplement callable `find_min_max`.\nFunction declaration: `def find_min_max(numbers):`\n\nDocstring:\nReturns a tuple containing the minimum and maximum values from the list of integers.\nIf the list is empty, returns (None, None)."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 2870,
+        "id": "Filter_61901_I",
+        "fn_name": "linear_search",
+        "subset": "Filter",
+        "prompt_chars": 1006,
+        "solution_chars": 461,
+        "public_tests": 2,
+        "hidden_tests": 6,
+        "flags": [],
+        "question": "Problem:\nCreate a Python function that simulates a linear search algorithm to find a target element in a list of integers. The function should return the index of the target element if it is found, or -1 if it is not in the list.\n\nImplement callable `linear_search`.\nFunction declaration: `def linear_search(arr, target):`\n\nDocstring:\nSimulates a linear search algorithm to find a target element in a list of integers.\n\nParameters:\narr (list of int): The list of integers to search through.\ntarget (int): The target element to find.\n\nReturns:\nint: The index of the target element if found, or -1 if not found."
+      },
+      {
+        "split": "sft_prompts",
+        "row": 119,
+        "id": "Prefill_13136_I",
+        "fn_name": "max_subarray_sum",
+        "subset": "Prefill",
+        "prompt_chars": 859,
+        "solution_chars": 469,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nWrite a function to find the maximum sum of a subarray within a given array of integers. Implement your function using Kadane's Algorithm, which is efficient with a time complexity of O(n).\n\nImplement callable `max_subarray_sum`.\nFunction declaration: `def max_subarray_sum(arr):`\n\nDocstring:\nFinds the maximum sum of a subarray within a given array of integers.\n\n:param arr: List[int] - List of integers\n:return: int - Maximum sum of the subarray"
+      },
+      {
+        "split": "grpo",
+        "row": 916,
+        "id": "Filter_80780_I",
+        "fn_name": "remove_duplicates",
+        "subset": "Filter",
+        "prompt_chars": 1002,
+        "solution_chars": 418,
+        "public_tests": 2,
+        "hidden_tests": 5,
+        "flags": [],
+        "question": "Problem:\nWrite a Python function that takes a list of integers and returns a new list with all duplicates removed. The order of the elements in the returned list should be the same as the order in which they first appeared in the original list. Use the `Set` ADT to implement this function efficiently.\n\nImplement callable `remove_duplicates`.\nFunction declaration: `def remove_duplicates(lst):`\n\nDocstring:\nRemoves duplicates from a list while preserving the original order of elements.\n\nArgs:\nlst (list of int): A list of integers\n\nReturns:\nlist of int: A new list with all duplicates removed"
+      },
+      {
+        "split": "eval",
+        "row": 100,
+        "id": "Algorithm_36396_I",
+        "fn_name": "generate_screen_sequence",
+        "subset": "Algorithm",
+        "prompt_chars": 2570,
+        "solution_chars": 609,
+        "public_tests": 2,
+        "hidden_tests": 2,
+        "flags": [
+          "long_prompt",
+          "few_hidden_tests"
+        ],
+        "question": "Problem:\n### Coding Assessment Question\n\n#### Context\nIn a series of computer screens connected together, each screen displays a sequence of alphabets where each screen's sequence must be incrementally longer than the previous one. This problem involves arranging the alphabets in such a way that the sequences satisfy the required conditions.\n\n#### Problem Statement\nGiven a single integer `n` representing the number of connected computer screens, you need to generate the sequences of alphabets for each screen such that:\n- The sequence for the `i-th` screen (where `i` starts from 1) is exactly `i` characters long.\n- Each character in any sequence can only be a lowercase English alphabet (`'a'` to `'z'`).\n- All characters in the sequences must be sorted in lexicographical order.\n\nCreate a function `generate_screen_sequence(n: int) -> List[str]` that generates these sequences for `n` screens and returns them as a list of strings.\n\n##### Input:\n- An integer `n` representing the number of screens (1 ≤ n ≤ 26).\n\n##### Output:\n- Return a list of `n` strings, where the `i-th` string has exactly `i` characters, sorted in lexicographical order.\n\n##### Example:\n```python\ngenerate_screen_sequence(3)\n# Expected output: [\"a\", \"ab\", \"abc\"]\n```\n\n##### Constraints:\n- Ensure that your solution correctly generates the sequences within the given constraints.\n- Utilize appropriate programming constructs to achieve the desired output.\n\n#### Notes:\n- The function should handle and return the results in an efficient manner for the given constraints.\n- Consider edge cases where `n` can be the smallest or the largest possible value.\n\nImplement callable `generate_screen_sequence`.\nFunction declaration: `def generate_screen_sequence(n):`\n\nDocstring:\nGenerate the sequences of alphabets for each screen such that:\n- The sequence for the `i-th` screen (where `i` starts from 1) is exactly `i` characters long.\n- Each character in any sequence can only be a lowercase English alphabet (`'a'` to `'z'`).\n- All characters in the sequences must be sorted in lexicographical order.\n\n:param n: Number of screens\n:return: List of strings representing the sequences for each screen"
+      },
+      {
+        "split": "grpo",
+        "row": 1419,
+        "id": "Filter_62922_I",
+        "fn_name": "sum_of_elements",
+        "subset": "Filter",
+        "prompt_chars": 793,
+        "solution_chars": 219,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nWrite a Python function that takes a list of integers as input and returns the sum of all the elements in the list. The function should be designed to handle large lists efficiently.\n\nImplement callable `sum_of_elements`.\nFunction declaration: `def sum_of_elements(lst):`\n\nDocstring:\nReturns the sum of all elements in the list.\n\nArgs:\nlst (list): List of integers.\n\nReturns:\nint: Sum of all integers in the list."
+      },
+      {
+        "split": "eval",
+        "row": 446,
+        "id": "Filter_68860_I",
+        "fn_name": "reverse_string",
+        "subset": "Filter",
+        "prompt_chars": 681,
+        "solution_chars": 252,
+        "public_tests": 2,
+        "hidden_tests": 3,
+        "flags": [],
+        "question": "Problem:\nCan you explain how to implement a function `reverse_string` in Python using a recursive approach?\n\nImplement callable `reverse_string`.\nFunction declaration: `def reverse_string(s):`\n\nDocstring:\nRecursively reverses a given string s.\n\n:param s: The string to be reversed.\n:return: The reversed string."
+      }
+    ]
+  }
+}

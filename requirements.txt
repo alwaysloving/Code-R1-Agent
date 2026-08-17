@@ -1,0 +1,6 @@
+# Data preparation and local validation
+datasets>=2.18
+
+# Training and rollout dependencies are provided by the slime environment.
+# Install slime and its pinned PyTorch/SGLang/Megatron dependencies separately.
+

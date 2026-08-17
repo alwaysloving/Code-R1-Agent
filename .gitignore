@@ -1,0 +1,47 @@
+# Python and notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Runtime output
+logs/
+wandb/
+tensorboard_log/
+*.log
+*.pid
+*.status
+*.rayjob
+*.lock
+
+# Model artifacts
+checkpoints/
+outputs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Large or generated datasets. Keep compact evaluation fixtures and reports.
+data/kodcode_light_rl_10k_raw.jsonl
+data/kodcode_light_rl_10k_raw/
+data/kodcode_code_r1_train.jsonl
+data/kodcode_code_r1_sft_prompts.jsonl
+data/kodcode_code_r1_sft.jsonl
+data/kodcode_code_r1_grpo.jsonl
+data/kodcode_code_r1_grpo_631.jsonl
+data/kodcode_code_r1_eval.jsonl.before_eval_filter
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
